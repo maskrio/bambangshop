@@ -78,6 +78,18 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-1
 
+>In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+Using traits can be beneficial to provide cleaner foundation that's easier to extend later if we're going to have a different types of Subscriber. However for smaller projects and we only need one type of Subscriber that always behave in the exact same way, using traits would be unnecessary. For BambangShop where we're likely to have multiple entities, it's better to use trait to seperate responsibilities. 
+
+>id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+Using Vec to find by ID/URL requires O(n) time linear search, while using DashMap requires O(1) time LookUp. Vec does not ensure uniqueness of id/url and requires additional linear searching pre-insertion, but DashMap naturally enforces key uniqueness. DashMap is more appropriate in this case due to its efficiency in lookups and specifically provides thread-safe concurrent access. 
+> When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+DashMap already provide thread-safety with a clean API and is optimized for concurrent access patterns. We can replace DashMap by implementing Singleton pattern using lazy_static and Mutex for thread safety, but it requires a more complex setup without a significant benefits compared to DashMap.  
+
+
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
