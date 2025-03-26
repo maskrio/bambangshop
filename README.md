@@ -92,4 +92,16 @@ DashMap already provide thread-safety with a clean API and is optimized for conc
 
 #### Reflection Publisher-2
 
+> In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+We're appling SRP(Single Responsibility Principle) such that each component has a clearly defined responsibility. Service is responsible for handling business logic, repository is responsible for handling the data. This seperation allows maintainability, we can modify repository without affecting service and vice versa. 
+
+> What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+The complexity of each model will increase significantly as we add more features. This will make the model harder to understand and maintain. Models reference to each other, creating complex dependency cycles as we add more features. Thread safety becomes harder with intertwined responsibilities. Testing is difficult since we are not able to test business logic without triggering database operations.
+
+>Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+This tool helps developers in API testing. Usually the Front End will send HTTP request to our server. Using postman allows us to send this HTTP request and inspect its responses. Postman allows us to save requests and responses as collections, it can also be shared to team members for automated testing, it can also be integrated into CI/CD pipelines. Postman is a powerfull tool with user-friendly interface for developers to test and debug their server-site applications.
+
 #### Reflection Publisher-3
