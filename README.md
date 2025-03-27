@@ -105,3 +105,14 @@ The complexity of each model will increase significantly as we add more features
 This tool helps developers in API testing. Usually the Front End will send HTTP request to our server. Using postman allows us to send this HTTP request and inspect its responses. Postman allows us to save requests and responses as collections, it can also be shared to team members for automated testing, it can also be integrated into CI/CD pipelines. Postman is a powerfull tool with user-friendly interface for developers to test and debug their server-site applications.
 
 #### Reflection Publisher-3
+>Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+In this tutoraial, we are implementing the Push model of observer Pattern. The `update` method receives a complete `Notification` Object containing all the releven data, then it is pushed to the subscriber in one operation. Subscribers don't need to make additional requests to get the information they need.
+
+>What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+In the pull model, Subscribers could request only the specific data they need, potentially reducing network usage for larger applications that has a huge ammount of users. Pull Method might not be as efficient as push because users have to check for updates themselves, potentially still checks when there's nothing new. 
+
+>Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+Without multi-threading, each HTTP POST to a subscriber would block the main thread until completion, meaning notifications would be sent one at a time. Notifications delivery time would increase linearly compared to multi-threading completing in pararell.
